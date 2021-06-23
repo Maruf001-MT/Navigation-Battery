@@ -1,0 +1,134 @@
+<!DOCTYPE.html>
+<html>
+<head>
+   <title></title>
+   <style>
+*{
+   margin:0;
+   padding:0;
+   box-sizing:border-box;
+}
+section{
+   position:relative;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   height:100vh;
+}
+section::before{
+   content:'';
+   position:absolute;
+   width:130px;
+   height:130px;
+   background:linear-gradient(#f3f5f5,#7800ff);
+   border-radius:50%;
+   transform:translate(-80px,-80px);
+}
+section::after{
+   content:'';
+   position:absolute;
+   width:130px;
+   height:130px;
+   background:linear-gradient(#ff0086,#f3f5f5);
+   border-radius:50%;
+   transform:translate(80px,80px);
+}
+.box{
+   position:relative;
+   width:180px;
+   height:200px;
+   background:rgba(255,255,255,0.7);
+   z-index:1;
+   margin:0;
+   border:1px solid rgba(255,255,255,0.25)
+   border-right:1px solid rgba(255,255,255,0.1);
+   border-bottom:1px solid rgba(255,255,255,0.1);
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   border-radius:10px;
+}
+.content{
+   justify-content:center;
+   align-items:center;
+   flex-direction:column;
+   display:flex;
+}
+.box h1{
+   color:#c700ff;
+   font-weight:500;
+   font-size:1.2rem;
+   letter-spacing:1px;
+}
+.batteryShape{
+   position:relative;
+   width:130px;
+   height:60px;
+   border:3px solid #333;
+   border-radius:10px;
+   margin:15px 0;
+}
+.batteryShape::before{
+   content:'';
+   top:40%;
+   position:absolute;
+   width:7px;
+   height:14px;
+   background:#333;
+   right:-9px;
+   border-radius:10px;
+}
+.level{
+   background: ;
+   top:4px;
+   right:4px;
+   left:4px;
+   bottom:4px;
+   position:absolute;
+   border-radius:4px;
+   overflow:hidden;
+}
+.percentage{
+   position:absolute;
+   left:0;
+   top:0;
+   height:100%;
+   width:50%;
+   background:linear-gradient(90deg,#7800ff,#ff0086);
+   border-radius:4px;
+}
+.percent{
+   color:#ff00fa;
+   font-size:1.5rem;
+   font-weight:bold;
+}
+   </style>
+</head>
+<body>
+   <section class="sec">
+      <div class="box">
+         <div class="content">
+            <h1>Battery</h1>
+          <div class="batteryShape">
+          <div class="level">
+           <div class="percentage"></div>
+          </div>
+         </div>
+         <div class="percent">50%</div>
+         </div>
+      </div>
+   </section>
+   
+   
+   
+   <script>
+ let percentage=document.querySelector('.percentage');
+ let percent=document.querySelector('.percent');
+ navigator.getBattery().then(function(battery){
+    percentage.style.width=battery.level*100+'%';
+    percent.innerHTML=battery.level*100+'%';
+    
+ })
+   </script>
+</body>
+</html>
